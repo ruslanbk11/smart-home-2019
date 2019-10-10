@@ -3,18 +3,18 @@
     {
       "lights": [
         {
-          "isOn": false,
+          "state": false,
           "id": "1"
         },
         {
-          "isOn": true,
+          "state": true,
           "id": "2"
         }
       ],
       "doors": [
         {
           "id": "1",
-          "isOpen": false
+          "state": false
         }
       ],
       "name": "kitchen"
@@ -22,14 +22,14 @@
     {
       "lights": [
         {
-          "isOn": true,
+          "state": true,
           "id": "3"
         }
       ],
       "doors": [
         {
           "id": "2",
-          "isOpen": false
+          "state": false
         }
       ],
       "name": "bathroom"
@@ -37,22 +37,22 @@
     {
       "lights": [
         {
-          "isOn": false,
+          "state": false,
           "id": "4"
         },
         {
-          "isOn": false,
+          "state": false,
           "id": "5"
         },
         {
-          "isOn": false,
+          "state": false,
           "id": "6"
         }
       ],
       "doors": [
         {
           "id": "3",
-          "isOpen": true
+          "state": true
         }
       ],
       "name": "bedroom"
@@ -60,22 +60,22 @@
     {
       "lights": [
         {
-          "isOn": false,
+          "state": false,
           "id": "7"
         },
         {
-          "isOn": false,
+          "state": false,
           "id": "8"
         },
         {
-          "isOn": false,
+          "state": false,
           "id": "9"
         }
       ],
       "doors": [
         {
           "id": "4",
-          "isOpen": false
+          "state": false
         }
       ],
       "name": "hall"
