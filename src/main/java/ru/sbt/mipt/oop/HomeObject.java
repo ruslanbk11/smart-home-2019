@@ -1,23 +1,13 @@
 package ru.sbt.mipt.oop;
 
-public class HomeObject {
-    private boolean state;
+class HomeObject {
     private final String id;
 
-    public HomeObject(boolean state, String id) {
-        this.state = state;
+    HomeObject(String id) {
         this.id = id;
     }
 
-    public boolean getState() {
-        return state;
-    }
-
-    public String getId() {
+    String getId() {
         return id;
-    }
-
-    public void setState(boolean state) {
-        this.state = state;
     }
 }
