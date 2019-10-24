@@ -7,8 +7,8 @@ import static ru.sbt.mipt.oop.SensorEventType.*;
 public class Application {
 
     private static SmartHome readHome(String filename) {
-        Reader reader = new JsonReader();
-        return reader.read(filename);
+        Reader reader = new JsonReader(filename);
+        return reader.read();
     }
 
     public static void main(String... args) {
