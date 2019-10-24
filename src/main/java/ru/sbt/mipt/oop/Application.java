@@ -6,14 +6,11 @@ import static ru.sbt.mipt.oop.SensorEventType.*;
 
 public class Application {
 
-    private static SmartHome readHome(String filename) {
-        Reader reader = new JsonReader(filename);
-        return reader.read();
-    }
-
     public static void main(String... args) {
+        Reader reader = new JsonReader("smart-home-1.js");
+
         // считываем состояние дома из файла
-        SmartHome smartHome = readHome("smart-home-1.js");
+        SmartHome smartHome = reader.read();
 
         // начинаем цикл обработки событий
         EventRunner.runEvents(smartHome);
