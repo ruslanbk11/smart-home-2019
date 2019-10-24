@@ -1,6 +1,6 @@
 package ru.sbt.mipt.oop;
 
-class HallDoorEventHandler {
+class HallDoorEventHandler implements EventHandler{
     static void handle(SensorEvent event, SmartHome smartHome) {
         for (Room room : smartHome.getRooms()) {
             for (Door door : room.getDoors()) {

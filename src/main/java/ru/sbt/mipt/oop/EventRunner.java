@@ -1,12 +1,11 @@
 package ru.sbt.mipt.oop;
 
-import java.util.Collection;
 
 import static ru.sbt.mipt.oop.SensorEventType.*;
 
 class EventRunner {
     static void runEvents(SmartHome smartHome){
-        SensorEvent event = SensorEvent.getNextSensorEvent();
+        SensorEvent event = SensorEventGetter.getNextSensorEvent();
         while (event != null) {
             System.out.println("Got event: " + event);
             SensorEventType type = event.getType();
@@ -16,7 +15,7 @@ class EventRunner {
                 DoorEventHandler.handle(event, smartHome);
                 HallDoorEventHandler.handle(event, smartHome);
             }
-            event = SensorEvent.getNextSensorEvent();
+            event = SensorEventGetter.getNextSensorEvent();
         }
     }
 }

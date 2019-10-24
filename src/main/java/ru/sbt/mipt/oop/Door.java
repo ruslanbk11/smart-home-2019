@@ -1,11 +1,16 @@
 package ru.sbt.mipt.oop;
 
-public class Door extends HomeObject {
+public class Door{
+    private String id;
     private boolean state;
 
     public Door(boolean state, String id) {
-        super(id);
+        this.id = id;
         this.state = state;
+    }
+
+    String getId() {
+        return id;
     }
 
     void setState(boolean state) {

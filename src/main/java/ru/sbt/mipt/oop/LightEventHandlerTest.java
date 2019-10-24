@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Collections;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class LightEventHandlerTest {
     @Test
     void turnOnTheLights() {
@@ -19,8 +17,8 @@ class LightEventHandlerTest {
 
         SensorEvent turnOnTurnedOffLight = new SensorEvent(SensorEventType.LIGHT_ON, "1");
         SensorEvent turnOnTurnedOnLight = new SensorEvent(SensorEventType.LIGHT_ON, "2");
-        LightEventHandler.handle(turnOnTurnedOffLight, smartHome);
-        LightEventHandler.handle(turnOnTurnedOnLight, smartHome);
+        EventHandler.handle(turnOnTurnedOffLight, smartHome);
+        EventHandler.handle(turnOnTurnedOnLight, smartHome);
         Assert.assertTrue(turnedOffLight.getState());
         Assert.assertTrue(turnedOnLight.getState());
     }
@@ -36,8 +34,8 @@ class LightEventHandlerTest {
 
         SensorEvent turnOffTurnedOffLight = new SensorEvent(SensorEventType.LIGHT_OFF, "1");
         SensorEvent turnOffTurnedOnLight = new SensorEvent(SensorEventType.LIGHT_OFF, "2");
-        LightEventHandler.handle(turnOffTurnedOffLight, smartHome);
-        LightEventHandler.handle(turnOffTurnedOnLight, smartHome);
+        EventHandler.handle(turnOffTurnedOffLight, smartHome);
+        EventHandler.handle(turnOffTurnedOnLight, smartHome);
         Assert.assertFalse(turnedOffLight.getState());
         Assert.assertFalse(turnedOnLight.getState());
     }
