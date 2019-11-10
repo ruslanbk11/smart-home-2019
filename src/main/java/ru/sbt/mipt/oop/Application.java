@@ -1,9 +1,6 @@
 package ru.sbt.mipt.oop;
 
-import ru.sbt.mipt.oop.eventHandlers.DoorEventHandler;
-import ru.sbt.mipt.oop.eventHandlers.EventHandler;
-import ru.sbt.mipt.oop.eventHandlers.HallDoorEventHandler;
-import ru.sbt.mipt.oop.eventHandlers.LightEventHandler;
+import ru.sbt.mipt.oop.eventHandlers.*;
 import ru.sbt.mipt.oop.readers.JsonReader;
 import ru.sbt.mipt.oop.readers.Reader;
 
@@ -23,6 +20,7 @@ public class Application {
         eventHandlers.add(new LightEventHandler(smartHome));
         eventHandlers.add(new DoorEventHandler(smartHome));
         eventHandlers.add(new HallDoorEventHandler(smartHome));
+        eventHandlers.add(new AlarmEventHandler(smartHome));
 
         EventRunner eventRunner = new EventRunner(eventHandlers);
         eventRunner.runEvents();
