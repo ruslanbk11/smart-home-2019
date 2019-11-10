@@ -9,11 +9,11 @@ public class SensorEvent {
         this.objectId = objectId;
     }
 
-    public SensorEventType getType() {
+    SensorEventType getType() {
         return type;
     }
 
-    public String getObjectId() {
+    String getObjectId() {
         return objectId;
     }
 
@@ -24,4 +24,5 @@ public class SensorEvent {
                 ", objectId='" + objectId + '\'' +
                 '}';
     }
+
 }
