@@ -28,9 +28,9 @@ public class AlarmEventHandler implements EventHandler {
                 }
                 Alarm alarm = (Alarm) o;
                 if (event.getType() == ALARM_ACTIVATE) {
-                    alarm.activate("parol_ot_signalizacii");
+                    alarm.activate(event.getCode());
                 } else {
-                    alarm.deactivate("parol_ot_signalizacii");
+                    alarm.deactivate(event.getCode());
                 }
             };
         }
