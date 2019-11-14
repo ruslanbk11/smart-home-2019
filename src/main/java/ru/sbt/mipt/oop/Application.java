@@ -1,8 +1,14 @@
 package ru.sbt.mipt.oop;
 
-import java.io.IOException;
+import ru.sbt.mipt.oop.eventHandlers.DoorEventHandler;
+import ru.sbt.mipt.oop.eventHandlers.EventHandler;
+import ru.sbt.mipt.oop.eventHandlers.HallDoorEventHandler;
+import ru.sbt.mipt.oop.eventHandlers.LightEventHandler;
+import ru.sbt.mipt.oop.readers.JsonReader;
+import ru.sbt.mipt.oop.readers.Reader;
 
-import static ru.sbt.mipt.oop.SensorEventType.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
 
@@ -13,7 +19,13 @@ public class Application {
         SmartHome smartHome = reader.read();
 
         // начинаем цикл обработки событий
-        EventRunner.runEvents(smartHome);
+        List<EventHandler> eventHandlers = new ArrayList<>();
+        eventHandlers.add(new LightEventHandler(smartHome));
+        eventHandlers.add(new DoorEventHandler(smartHome));
+        eventHandlers.add(new HallDoorEventHandler(smartHome));
+
+        EventRunner eventRunner = new EventRunner(eventHandlers);
+        eventRunner.runEvents();
     }
 
 }

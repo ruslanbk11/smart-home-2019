@@ -1,84 +1,97 @@
 {
   "rooms": [
-    {
-      "lights": [
-        {
-          "state": false,
-          "id": "1"
-        },
-        {
-          "state": true,
-          "id": "2"
-        }
-      ],
-      "doors": [
-        {
-          "id": "1",
-          "state": false
-        }
-      ],
-      "name": "kitchen"
-    },
-    {
-      "lights": [
-        {
-          "state": true,
-          "id": "3"
-        }
-      ],
-      "doors": [
-        {
-          "id": "2",
-          "state": false
-        }
-      ],
-      "name": "bathroom"
-    },
-    {
-      "lights": [
-        {
-          "state": false,
-          "id": "4"
-        },
-        {
-          "state": false,
-          "id": "5"
-        },
-        {
-          "state": false,
-          "id": "6"
-        }
-      ],
-      "doors": [
-        {
-          "id": "3",
-          "state": true
-        }
-      ],
-      "name": "bedroom"
-    },
-    {
-      "lights": [
-        {
-          "state": false,
-          "id": "7"
-        },
-        {
-          "state": false,
-          "id": "8"
-        },
-        {
-          "state": false,
-          "id": "9"
-        }
-      ],
-      "doors": [
-        {
-          "id": "4",
-          "state": false
-        }
-      ],
-      "name": "hall"
-    }
-  ]
+  {
+    "lights": [
+      {
+        "id": "1",
+        "state": false,
+        "roomName": "kitchen"
+      },
+      {
+        "id": "2",
+        "state": true,
+        "roomName": "kitchen"
+      }
+    ],
+    "doors": [
+      {
+        "id": "1",
+        "state": false,
+        "roomName": "kitchen"
+      }
+    ],
+    "name": "kitchen"
+  },
+  {
+    "lights": [
+      {
+        "id": "3",
+        "state": true,
+        "roomName": "bathroom"
+      }
+    ],
+    "doors": [
+      {
+        "id": "2",
+        "state": false,
+        "roomName": "bathroom"
+      }
+    ],
+    "name": "bathroom"
+  },
+  {
+    "lights": [
+      {
+        "id": "4",
+        "state": false,
+        "roomName": "bedroom"
+      },
+      {
+        "id": "5",
+        "state": false,
+        "roomName": "bedroom"
+      },
+      {
+        "id": "6",
+        "state": false,
+        "roomName": "bedroom"
+      }
+    ],
+    "doors": [
+      {
+        "id": "3",
+        "state": true,
+        "roomName": "bedroom"
+      }
+    ],
+    "name": "bedroom"
+  },
+  {
+    "lights": [
+      {
+        "id": "7",
+        "state": false,
+        "roomName": "hall"
+      },
+      {
+        "id": "8",
+        "state": false,
+        "roomName": "hall"
+      },
+      {
+        "id": "9",
+        "state": false,
+        "roomName": "hall"
+      }
+    ],
+    "doors": [
+      {
+        "id": "4",
+        "state": false,
+        "roomName": "hall"
+      }
+    ],
+    "name": "hall"
+  }
+]
 }
