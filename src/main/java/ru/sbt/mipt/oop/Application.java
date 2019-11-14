@@ -1,5 +1,6 @@
 package ru.sbt.mipt.oop;
 
+import ru.sbt.mipt.oop.alarm.Alarm;
 import ru.sbt.mipt.oop.eventHandlers.*;
 import ru.sbt.mipt.oop.readers.JsonReader;
 import ru.sbt.mipt.oop.readers.Reader;
@@ -22,7 +23,9 @@ public class Application {
         eventHandlers.add(new HallDoorEventHandler(smartHome));
         eventHandlers.add(new AlarmEventHandler(smartHome));
 
-        EventRunner eventRunner = new EventRunner(eventHandlers);
+        AlarmDecorator alarmDecorator = new AlarmDecorator(smartHome.alarm, eventHandlers);
+
+        EventRunner eventRunner = new EventRunner(alarmDecorator);
         eventRunner.runEvents();
     }
 

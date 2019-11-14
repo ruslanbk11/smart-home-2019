@@ -1,14 +1,13 @@
 package ru.sbt.mipt.oop;
 
 import ru.sbt.mipt.oop.alarm.Alarm;
-import ru.sbt.mipt.oop.alarm.DeactivatedState;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 public class SmartHome implements Actionable{
     Collection<Room> rooms;
-    Alarm alarm = new Alarm("parol_ot_signalizacii");
+    Alarm alarm = new Alarm();
 
     public SmartHome() {
         rooms = new ArrayList<>();

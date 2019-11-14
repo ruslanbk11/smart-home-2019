@@ -9,10 +9,9 @@ public class DeactivatedState implements AlarmState {
 
     @Override
     public void activate(String code) {
-        if (alarm.checkCode(code)) {
-            alarm.setState(new ActivatedState(alarm));
-            System.out.println("Alarm activated");
-        }
+        alarm.setCode(code);
+        alarm.setState(new ActivatedState(alarm));
+        System.out.println("Alarm activated");
     }
 
     @Override

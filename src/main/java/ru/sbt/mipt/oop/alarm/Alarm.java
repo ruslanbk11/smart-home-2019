@@ -5,11 +5,7 @@ import ru.sbt.mipt.oop.Actionable;
 
 public class Alarm implements Actionable {
     private AlarmState state = new DeactivatedState(this);
-    private final String code;
-
-    public Alarm(String code) {
-        this.code = code;
-    }
+    private String code;
 
     public boolean checkCode(String code){
         return code.equals(this.code);
@@ -17,6 +13,14 @@ public class Alarm implements Actionable {
 
     public void setState(AlarmState state) {
         this.state = state;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public AlarmState getState() {
+        return state;
     }
 
     public void activate(String code) {

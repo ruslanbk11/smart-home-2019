@@ -6,10 +6,10 @@ import java.util.List;
 
 class EventRunner {
 
-    private List<EventHandler> eventHandlers;
+    private EventHandler eventHandler;
 
-    public EventRunner(List<EventHandler> eventHandlers) {
-        this.eventHandlers = eventHandlers;
+    public EventRunner(EventHandler eventHandler) {
+        this.eventHandler = eventHandler;
     }
 
     void runEvents(){
@@ -17,11 +17,7 @@ class EventRunner {
         SensorEvent event = SensorEventGetter.getNextSensorEvent();
         while (event != null) {
             System.out.println("Got event: " + event);
-
-            for (EventHandler eventHandler : eventHandlers) {
-                eventHandler.handle(event);
-            }
-
+            eventHandler.handle(event);
             event = SensorEventGetter.getNextSensorEvent();
         }
     }

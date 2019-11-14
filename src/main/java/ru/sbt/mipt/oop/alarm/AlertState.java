@@ -20,6 +20,8 @@ public class AlertState implements AlarmState {
         if(alarm.checkCode(code)) {
             alarm.setState(new DeactivatedState(alarm));
             System.out.println("Alert canceled. Alarm deactivated.");
+        } else {
+            System.out.println("WRONG DEACTIVATION CODE ALERT !!!");
         }
     }
 
