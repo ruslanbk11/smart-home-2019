@@ -59,4 +59,33 @@ class AlarmEventHandlerTest {
         alarmEventHandler.handle(wrongDeactivationActivatedAlarm);
         Assert.assertTrue(alarm.getState() instanceof AlertState);
     }
+
+    @Test
+    void activateAlertOnDeactivatedAlarm() {
+        alarm.alert();
+        Assert.assertTrue(alarm.getState() instanceof AlertState);
+    }
+
+    @Test
+    void activateAlertOnActiveAlarm() {
+        SensorEvent activateDeactivatedAlarm = new SensorEvent(SensorEventType.ALARM_ACTIVATE, "0");
+        activateDeactivatedAlarm.setCode("pass");
+        alarmEventHandler.handle(activateDeactivatedAlarm);
+
+        alarm.alert();
+        Assert.assertTrue(alarm.getState() instanceof AlertState);
+    }
+
+    @Test
+    void deactivateAlertOnInitiallyActivatedAlarm() {
+        SensorEvent activateDeactivatedAlarm = new SensorEvent(SensorEventType.ALARM_ACTIVATE, "0");
+        activateDeactivatedAlarm.setCode("pass");
+        alarmEventHandler.handle(activateDeactivatedAlarm);
+        alarm.alert();
+
+        SensorEvent deactivateAlertedAlarm = new SensorEvent(SensorEventType.ALARM_DEACTIVATE, "0");
+        deactivateAlertedAlarm.setCode("pass");
+        alarmEventHandler.handle(deactivateAlertedAlarm);
+        Assert.assertTrue(alarm.getState() instanceof DeactivatedState);
+    }
 }
