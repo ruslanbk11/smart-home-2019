@@ -1,6 +1,5 @@
 package ru.sbt.mipt.oop;
 
-import ru.sbt.mipt.oop.alarm.Alarm;
 import ru.sbt.mipt.oop.eventHandlers.*;
 import ru.sbt.mipt.oop.readers.JsonReader;
 import ru.sbt.mipt.oop.readers.Reader;
@@ -18,14 +17,13 @@ public class Application {
 
         // начинаем цикл обработки событий
         List<EventHandler> eventHandlers = new ArrayList<>();
-        eventHandlers.add(new LightEventHandler(smartHome));
-        eventHandlers.add(new DoorEventHandler(smartHome));
-        eventHandlers.add(new HallDoorEventHandler(smartHome));
-        eventHandlers.add(new AlarmEventHandler(smartHome));
+        eventHandlers.add(new AlarmDecorator(smartHome.alarm, new LightEventHandler(smartHome)));
+        eventHandlers.add(new AlarmDecorator(smartHome.alarm, new DoorEventHandler(smartHome)));
+        eventHandlers.add(new AlarmDecorator(smartHome.alarm, new HallDoorEventHandler(smartHome)));
+        eventHandlers.add(new AlarmDecorator(smartHome.alarm, new AlarmEventHandler(smartHome)));
 
-        AlarmDecorator alarmDecorator = new AlarmDecorator(smartHome.alarm, eventHandlers);
 
-        EventRunner eventRunner = new EventRunner(alarmDecorator);
+        EventRunner eventRunner = new EventRunner(eventHandlers);
         eventRunner.runEvents();
     }
 
