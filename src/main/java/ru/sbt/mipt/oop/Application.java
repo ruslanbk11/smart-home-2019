@@ -17,14 +17,14 @@ public class Application {
 
         // начинаем цикл обработки событий
         List<EventHandler> eventHandlers = new ArrayList<>();
-        eventHandlers.add(new AlarmDecorator(smartHome.alarm, new LightEventHandler(smartHome)));
-        eventHandlers.add(new AlarmDecorator(smartHome.alarm, new DoorEventHandler(smartHome)));
-        eventHandlers.add(new AlarmDecorator(smartHome.alarm, new HallDoorEventHandler(smartHome)));
-        eventHandlers.add(new AlarmDecorator(smartHome.alarm, new AlarmEventHandler(smartHome)));
+        eventHandlers.add(new LightEventHandler(smartHome));
+        eventHandlers.add(new DoorEventHandler(smartHome));
+        eventHandlers.add(new HallDoorEventHandler(smartHome));
+        eventHandlers.add(new AlarmEventHandler(smartHome));
 
 
-        EventRunner eventRunner = new EventRunner(eventHandlers);
-        eventRunner.runEvents();
+        EventRunnable eventRunner = new AlarmDecorator(smartHome.alarm, new EventRunner(eventHandlers));
+        eventRunner.runEvents(SensorEventGetter.getNextSensorEvent());
     }
 
 }
