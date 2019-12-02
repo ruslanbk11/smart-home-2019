@@ -25,19 +25,12 @@ public class AlarmDecorator implements EventRunnable {
         AlarmState alarmState = alarm.getState();
         if (alarmState instanceof DeactivatedState) {
             eventRunner.runEvent(event);
-        } else if (alarmState instanceof ActivatedState) {
-            if (event.getType() == ALARM_DEACTIVATE) {
-                System.out.println("trying to deactivate alert with password: " + event.getCode());
-                eventRunner.runEvent(event);
-            } else {
-                alarm.setState(new AlertState(alarm));
-                System.out.println("Sending ALERT sms");
-            }
         } else {
             if (event.getType() == ALARM_DEACTIVATE) {
                 System.out.println("trying to deactivate alert with password: " + event.getCode());
                 eventRunner.runEvent(event);
             } else {
+                alarm.setState(new AlertState(alarm));
                 System.out.println("Sending ALERT sms");
             }
         }
