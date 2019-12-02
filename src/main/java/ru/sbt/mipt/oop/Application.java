@@ -24,7 +24,8 @@ public class Application {
 
 
         EventRunnable eventRunner = new AlarmDecorator(smartHome.alarm, new EventRunner(eventHandlers));
-        eventRunner.runEvents(SensorEventGetter.getNextSensorEvent());
+        HomeRunner homeRunner = new HomeRunner(eventRunner);
+        homeRunner.run();
     }
 
 }

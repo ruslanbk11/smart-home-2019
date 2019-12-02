@@ -11,7 +11,7 @@ class EventRunner implements EventRunnable{
         this.eventHandlers = eventHandlers;
     }
 
-    public void runEvents(SensorEvent event){
+    public void runEvent(SensorEvent event){
         for (EventHandler eventHandler : eventHandlers) {
             eventHandler.handle(event);
         }

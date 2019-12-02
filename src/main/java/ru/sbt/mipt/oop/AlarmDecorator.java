@@ -15,7 +15,7 @@ public class AlarmDecorator implements EventRunnable {
     }
 
     @Override
-    public void runEvents(SensorEvent event) {
+    public void runEvent(SensorEvent event) {
         if (event == null) {
             return;
         }
@@ -24,11 +24,11 @@ public class AlarmDecorator implements EventRunnable {
 
         AlarmState alarmState = alarm.getState();
         if (alarmState instanceof DeactivatedState) {
-            eventRunner.runEvents(event);
+            eventRunner.runEvent(event);
         } else if (alarmState instanceof ActivatedState) {
             if (event.getType() == ALARM_DEACTIVATE) {
                 System.out.println("trying to deactivate alert with password: " + event.getCode());
-                eventRunner.runEvents(event);
+                eventRunner.runEvent(event);
             } else {
                 alarm.setState(new AlertState(alarm));
                 System.out.println("Sending ALERT sms");
@@ -36,11 +36,10 @@ public class AlarmDecorator implements EventRunnable {
         } else {
             if (event.getType() == ALARM_DEACTIVATE) {
                 System.out.println("trying to deactivate alert with password: " + event.getCode());
-                eventRunner.runEvents(event);
+                eventRunner.runEvent(event);
             } else {
                 System.out.println("Sending ALERT sms");
             }
         }
-        this.runEvents(SensorEventGetter.getNextSensorEvent());
     }
 }
