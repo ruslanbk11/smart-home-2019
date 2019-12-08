@@ -29,8 +29,8 @@ class LightEventHandlerTest {
     void turnOnTheLights() {
         SensorEvent turnOnTurnedOffLight = new SensorEvent(SensorEventType.LIGHT_ON, "1");
         SensorEvent turnOnTurnedOnLight = new SensorEvent(SensorEventType.LIGHT_ON, "2");
-        lightEventHandler.handle(turnOnTurnedOffLight);
-        lightEventHandler.handle(turnOnTurnedOnLight);
+        lightEventHandler.handleEvent(turnOnTurnedOffLight);
+        lightEventHandler.handleEvent(turnOnTurnedOnLight);
         Assert.assertTrue(turnedOffLight.getState());
         Assert.assertTrue(turnedOnLight.getState());
     }
@@ -39,8 +39,8 @@ class LightEventHandlerTest {
     void turnOffTheLights() {
         SensorEvent turnOffTurnedOffLight = new SensorEvent(SensorEventType.LIGHT_OFF, "1");
         SensorEvent turnOffTurnedOnLight = new SensorEvent(SensorEventType.LIGHT_OFF, "2");
-        lightEventHandler.handle(turnOffTurnedOffLight);
-        lightEventHandler.handle(turnOffTurnedOnLight);
+        lightEventHandler.handleEvent(turnOffTurnedOffLight);
+        lightEventHandler.handleEvent(turnOffTurnedOnLight);
         Assert.assertFalse(turnedOffLight.getState());
         Assert.assertFalse(turnedOnLight.getState());
     }

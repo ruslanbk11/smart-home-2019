@@ -28,8 +28,8 @@ class DoorEventHandlerTest {
     void openOpenedAndClosedDoors() {
         SensorEvent openOpenedDoorEvent = new SensorEvent(SensorEventType.DOOR_OPEN, "1");
         SensorEvent openClosedDoorEvent = new SensorEvent(SensorEventType.DOOR_OPEN, "2");
-        doorEventHandler.handle(openOpenedDoorEvent);
-        doorEventHandler.handle(openClosedDoorEvent);
+        doorEventHandler.handleEvent(openOpenedDoorEvent);
+        doorEventHandler.handleEvent(openClosedDoorEvent);
         Assert.assertTrue(openedDoor.getState());
         Assert.assertTrue(closedDoor.getState());
     }
@@ -38,8 +38,8 @@ class DoorEventHandlerTest {
     void closeOpenedAndClosedDoors() {
         SensorEvent closeOpenedDoorEvent = new SensorEvent(SensorEventType.DOOR_CLOSED, "1");
         SensorEvent closeClosedDoorEvent = new SensorEvent(SensorEventType.DOOR_CLOSED, "2");
-        doorEventHandler.handle(closeOpenedDoorEvent);
-        doorEventHandler.handle(closeClosedDoorEvent);
+        doorEventHandler.handleEvent(closeOpenedDoorEvent);
+        doorEventHandler.handleEvent(closeClosedDoorEvent);
         Assert.assertFalse(openedDoor.getState());
         Assert.assertFalse(closedDoor.getState());
     }

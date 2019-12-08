@@ -13,8 +13,6 @@ import ru.sbt.mipt.oop.alarm.DeactivatedState;
 import ru.sbt.mipt.oop.eventHandlers.AlarmEventHandler;
 import ru.sbt.mipt.oop.eventHandlers.EventHandler;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class AlarmEventHandlerTest {
     private static Alarm alarm;
     private static EventHandler alarmEventHandler;
@@ -31,7 +29,7 @@ class AlarmEventHandlerTest {
     void activateDeactivatedAlarm() {
         SensorEvent activateDeactivatedAlarm = new SensorEvent(SensorEventType.ALARM_ACTIVATE, "0");
         activateDeactivatedAlarm.setCode("pass");
-        alarmEventHandler.handle(activateDeactivatedAlarm);
+        alarmEventHandler.handleEvent(activateDeactivatedAlarm);
         Assert.assertTrue(alarm.getState() instanceof ActivatedState);
         Assert.assertTrue(alarm.checkCode("pass"));
     }
@@ -40,11 +38,11 @@ class AlarmEventHandlerTest {
     void deactivateActivatedAlarm() {
         SensorEvent activateDeactivatedAlarm = new SensorEvent(SensorEventType.ALARM_ACTIVATE, "0");
         activateDeactivatedAlarm.setCode("pass");
-        alarmEventHandler.handle(activateDeactivatedAlarm);
+        alarmEventHandler.handleEvent(activateDeactivatedAlarm);
 
         SensorEvent deactivateActivatedAlarm = new SensorEvent(SensorEventType.ALARM_DEACTIVATE, "0");
         deactivateActivatedAlarm.setCode("pass");
-        alarmEventHandler.handle(deactivateActivatedAlarm);
+        alarmEventHandler.handleEvent(deactivateActivatedAlarm);
         Assert.assertTrue(alarm.getState() instanceof DeactivatedState);
     }
 
@@ -52,11 +50,11 @@ class AlarmEventHandlerTest {
     void unsuccessfulDeactivationOfActivatedAlarm() {
         SensorEvent activateDeactivatedAlarm = new SensorEvent(SensorEventType.ALARM_ACTIVATE, "0");
         activateDeactivatedAlarm.setCode("pass");
-        alarmEventHandler.handle(activateDeactivatedAlarm);
+        alarmEventHandler.handleEvent(activateDeactivatedAlarm);
 
         SensorEvent wrongDeactivationActivatedAlarm = new SensorEvent(SensorEventType.ALARM_DEACTIVATE, "0");
         wrongDeactivationActivatedAlarm.setCode("you_shall_not");
-        alarmEventHandler.handle(wrongDeactivationActivatedAlarm);
+        alarmEventHandler.handleEvent(wrongDeactivationActivatedAlarm);
         Assert.assertTrue(alarm.getState() instanceof AlertState);
     }
 
@@ -70,7 +68,7 @@ class AlarmEventHandlerTest {
     void activateAlertOnActiveAlarm() {
         SensorEvent activateDeactivatedAlarm = new SensorEvent(SensorEventType.ALARM_ACTIVATE, "0");
         activateDeactivatedAlarm.setCode("pass");
-        alarmEventHandler.handle(activateDeactivatedAlarm);
+        alarmEventHandler.handleEvent(activateDeactivatedAlarm);
 
         alarm.alert();
         Assert.assertTrue(alarm.getState() instanceof AlertState);
@@ -80,12 +78,12 @@ class AlarmEventHandlerTest {
     void deactivateAlertOnInitiallyActivatedAlarm() {
         SensorEvent activateDeactivatedAlarm = new SensorEvent(SensorEventType.ALARM_ACTIVATE, "0");
         activateDeactivatedAlarm.setCode("pass");
-        alarmEventHandler.handle(activateDeactivatedAlarm);
+        alarmEventHandler.handleEvent(activateDeactivatedAlarm);
         alarm.alert();
 
         SensorEvent deactivateAlertedAlarm = new SensorEvent(SensorEventType.ALARM_DEACTIVATE, "0");
         deactivateAlertedAlarm.setCode("pass");
-        alarmEventHandler.handle(deactivateAlertedAlarm);
+        alarmEventHandler.handleEvent(deactivateAlertedAlarm);
         Assert.assertTrue(alarm.getState() instanceof DeactivatedState);
     }
 }
