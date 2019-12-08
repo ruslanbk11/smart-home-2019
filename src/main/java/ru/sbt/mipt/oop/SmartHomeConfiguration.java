@@ -3,13 +3,16 @@ package ru.sbt.mipt.oop;
 import com.coolcompany.smarthome.events.SensorEventsManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import ru.sbt.mipt.oop.eventHandlers.*;
 import ru.sbt.mipt.oop.readers.JsonReader;
 import ru.sbt.mipt.oop.readers.Reader;
+import ru.sbt.mipt.oop.remoteControl.RemoteControlConfiguration;
 
 import java.util.Collection;
 
 @Configuration
+@Import(RemoteControlConfiguration.class)
 public class SmartHomeConfiguration {
 
     @Bean

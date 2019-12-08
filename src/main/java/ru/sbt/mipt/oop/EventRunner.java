@@ -25,6 +25,7 @@ class EventRunner implements com.coolcompany.smarthome.events.EventHandler {
         adapters.add(new CCDoorEventAdapter());
         CCEventAdapter adapter = new CCSensorEventAdapter(adapters);
 
+        System.out.println("Got event: " + event.getEventType() + " for object:" + event.getObjectId());
         SensorEvent adaptedEvent = adapter.adaptee(event);
 
         for (EventHandler eventHandler : eventHandlers) {

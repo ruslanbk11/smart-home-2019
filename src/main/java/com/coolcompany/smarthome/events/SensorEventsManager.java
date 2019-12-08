@@ -15,7 +15,6 @@ public class SensorEventsManager {
     public void start() {
         CCSensorEvent event = getNextSensorEvent();
         while (event != null) {
-            System.out.println("Got event: " + event.getEventType());
             for (EventHandler handler : handlers) {
                 handler.handleEvent(event);
             }
