@@ -25,6 +25,10 @@ public class SmartHome implements Actionable{
         this.alarm = alarm;
     }
 
+    public Alarm getAlarm() {
+        return alarm;
+    }
+
     @Override
     public void execute(Action action) {
         action.execute(this);

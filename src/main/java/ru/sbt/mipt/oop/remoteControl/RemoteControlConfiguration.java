@@ -11,7 +11,7 @@ import ru.sbt.mipt.oop.remoteControl.commands.*;
 @Configuration
 public class RemoteControlConfiguration {
     @Bean
-    public RemoteControl remoteControlImpVar(ActivateAlarmCommand activate,
+    public RemoteControl remoteControl(ActivateAlarmCommand activate,
                                              @Qualifier("AllLightsOn") AllLightsCommand AllLightsOn,
                                              @Qualifier("AllLightsOff") AllLightsCommand AllLightsOff,
                                              CloseHallDoorCommand closeHallDoor,
