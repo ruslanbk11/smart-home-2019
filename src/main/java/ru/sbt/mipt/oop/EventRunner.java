@@ -4,25 +4,16 @@ import ru.sbt.mipt.oop.eventHandlers.EventHandler;
 
 import java.util.List;
 
-class EventRunner {
-
+class EventRunner implements EventRunnable{
     private List<EventHandler> eventHandlers;
 
     public EventRunner(List<EventHandler> eventHandlers) {
         this.eventHandlers = eventHandlers;
     }
 
-    void runEvents(){
-
-        SensorEvent event = SensorEventGetter.getNextSensorEvent();
-        while (event != null) {
-            System.out.println("Got event: " + event);
-
-            for (EventHandler eventHandler : eventHandlers) {
-                eventHandler.handle(event);
-            }
-
-            event = SensorEventGetter.getNextSensorEvent();
+    public void runEvent(SensorEvent event){
+        for (EventHandler eventHandler : eventHandlers) {
+            eventHandler.handle(event);
         }
     }
 }
