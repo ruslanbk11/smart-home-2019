@@ -1,34 +1,34 @@
 package ru.sbt.mipt.oop;
 
+import com.coolcompany.smarthome.events.CCSensorEvent;
+import com.coolcompany.smarthome.events.EventHandler;
 import ru.sbt.mipt.oop.alarm.*;
 
 import static ru.sbt.mipt.oop.SensorEventType.ALARM_DEACTIVATE;
 
-public class AlarmDecorator implements EventRunnable {
+public class AlarmDecorator implements EventHandler {
 
     private Alarm alarm;
-    private EventRunnable eventRunner;
+    private EventHandler eventHandler;
 
-    public AlarmDecorator(Alarm alarm, EventRunnable eventRunner) {
+    AlarmDecorator(Alarm alarm, EventHandler eventHandler) {
         this.alarm = alarm;
-        this.eventRunner = eventRunner;
+        this.eventHandler = eventHandler;
     }
 
     @Override
-    public void runEvent(SensorEvent event) {
+    public void handleEvent(CCSensorEvent event) {
         if (event == null) {
             return;
         }
 
-        System.out.println("Got event: " + event);
-
         AlarmState alarmState = alarm.getState();
         if (alarmState instanceof DeactivatedState) {
-            eventRunner.runEvent(event);
+            eventHandler.handleEvent(event);
         } else {
-            if (event.getType() == ALARM_DEACTIVATE) {
-                System.out.println("trying to deactivate alert with password: " + event.getCode());
-                eventRunner.runEvent(event);
+            if (event.getEventType().equals(ALARM_DEACTIVATE.toString())) {
+                System.out.println("trying to deactivate alert with password");
+                eventHandler.handleEvent(event);
             } else {
                 if (alarmState instanceof ActivatedState) {
                     alarm.setState(new AlertState(alarm));
