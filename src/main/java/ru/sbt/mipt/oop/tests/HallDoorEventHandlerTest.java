@@ -34,8 +34,8 @@ class HallDoorEventHandlerTest {
     @Test
     void closeHallDoorAndTurnOffLights() {
         SensorEvent closeHallDoorEvent = new SensorEvent(SensorEventType.DOOR_CLOSED, "1");
-        doorEventHandler.handle(closeHallDoorEvent);
-        hallDoorEventHandler.handle(closeHallDoorEvent);
+        doorEventHandler.handleEvent(closeHallDoorEvent);
+        hallDoorEventHandler.handleEvent(closeHallDoorEvent);
         Assert.assertFalse(hallLight.getState());
         Assert.assertFalse(bathroomLights.getState());
         Assert.assertFalse(openedHallDoor.getState());

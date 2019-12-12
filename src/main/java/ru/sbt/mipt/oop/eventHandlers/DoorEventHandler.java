@@ -13,7 +13,11 @@ public class DoorEventHandler implements EventHandler {
     }
 
     @Override
-    public void handle(SensorEvent event) {
+    public void handleEvent(SensorEvent event) {
+        if (event == null) {
+            return;
+        }
+
         Action action;
         if (event.getType() != DOOR_OPEN && event.getType() != DOOR_CLOSED) {
             action = null;

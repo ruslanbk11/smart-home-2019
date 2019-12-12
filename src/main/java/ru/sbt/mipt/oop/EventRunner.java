@@ -1,19 +1,28 @@
 package ru.sbt.mipt.oop;
 
+import com.coolcompany.smarthome.events.CCSensorEvent;
+import ru.sbt.mipt.oop.eventAdapters.CCEventAdapter;
 import ru.sbt.mipt.oop.eventHandlers.EventHandler;
 
-import java.util.List;
+import java.util.Collection;
 
-class EventRunner implements EventRunnable{
-    private List<EventHandler> eventHandlers;
+class EventRunner implements com.coolcompany.smarthome.events.EventHandler {
+    private Collection<EventHandler> eventHandlers;
+    private CCEventAdapter adapter;
 
-    public EventRunner(List<EventHandler> eventHandlers) {
+    EventRunner(Collection<EventHandler> eventHandlers, CCEventAdapter adapter) {
         this.eventHandlers = eventHandlers;
+        this.adapter = adapter;
     }
 
-    public void runEvent(SensorEvent event){
+    @Override
+    public void handleEvent(CCSensorEvent event) {
+
+        System.out.println("Got event: " + event.getEventType() + " for object:" + event.getObjectId());
+        SensorEvent adaptedEvent = adapter.adaptee(event);
+
         for (EventHandler eventHandler : eventHandlers) {
-            eventHandler.handle(event);
+            eventHandler.handleEvent(adaptedEvent);
         }
     }
 }

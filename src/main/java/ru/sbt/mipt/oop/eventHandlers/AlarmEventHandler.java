@@ -17,7 +17,11 @@ public class AlarmEventHandler implements EventHandler {
     }
 
     @Override
-    public void handle(SensorEvent event){
+    public void handleEvent(SensorEvent event){
+        if (event == null) {
+            return;
+        }
+
         Action action;
         if (event.getType() != ALARM_ACTIVATE && event.getType() != ALARM_DEACTIVATE) {
             action = null;
